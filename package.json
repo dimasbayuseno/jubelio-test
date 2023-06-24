@@ -9,6 +9,7 @@
   "author": "dimas",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "hapi": "^18.1.0",
     "pg": "^8.11.0"
   }
