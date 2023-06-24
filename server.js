@@ -1,5 +1,6 @@
 const Hapi = require('hapi');
 const {connectToDatabase, createTableAdjustmentTransaction, createTableProduct} = require("./db/db");
+const productRoutes = require("./routes/product_route");
 
 const init = async () => {
     await connectToDatabase();
@@ -13,13 +14,7 @@ const init = async () => {
 
 
 
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: (request, h) => {
-            return 'Hello, World!';
-        },
-    });
+    server.route(productRoutes);
 
     await server.start();
     console.log('Server running on %s', server.info.uri);
