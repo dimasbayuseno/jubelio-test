@@ -60,7 +60,7 @@ const deleteProduct = async (request, h) => {
     try {
         const { id } = request.params;
         await productModel.deleteProduct(id);
-        return;
+        return h.response('Successfully deleted the product').code(200);
     } catch (error) {
         console.error('Error deleting product', error);
         if (error.message === 'Product not found') {
@@ -71,8 +71,13 @@ const deleteProduct = async (request, h) => {
 };
 
 const insertBulkProduct = async (request, h) => {
+    const { page, limit } = request.query;
+
+    const pages = page || 1
+    const limits = limit || 10
+
     try {
-        await fetchProducts();
+        await fetchProducts(pages, limits);
         return h.response("Successfully insert products").code(200);
     } catch (error) {
         return h.response('Internal Server Error').code(500);

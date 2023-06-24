@@ -15,7 +15,6 @@ const init = async () => {
     });
 
 
-
     server.route(productRoutes);
     server.route(adjustmentTransactionRoutes);
 

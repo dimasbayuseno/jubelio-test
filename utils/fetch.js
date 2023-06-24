@@ -2,8 +2,8 @@ require('dotenv').config();
 const fetch = require('cross-fetch');
 const productModel = require('../models/product_model');
 
-const fetchProducts = async () => {
-    const url = process.env.JUBELIO_CODE_TEST_URL;
+const fetchProducts = async (page = 1, limit = 10) => {
+    const url = `${process.env.JUBELIO_CODE_TEST_URL}?page=${page}&per_page=${limit}`;
     const username = process.env.CONSUMER_USER;
     const password = process.env.CONSUMER_PASS;
 
@@ -19,10 +19,11 @@ const fetchProducts = async () => {
         }
 
         const products = await response.json();
+        console.log(products)
         const simplifiedProducts = products.map((product) => ({
             sku: product.sku,
             name: product.name,
-            image: product.images[0].src || "",
+            image: product.images[0]?.src || "",
             price: product.price,
             description: product.description,
         }));

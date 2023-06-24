@@ -45,8 +45,7 @@ const createTableAdjustmentTransaction = async () => {
       CREATE TABLE IF NOT EXISTS adjustment_transactions (
         id SERIAL PRIMARY KEY,
         sku VARCHAR(50) NOT NULL,
-        qty INTEGER,
-        amount DECIMAL,
+        qty NUMERIC NOT NULL,
         FOREIGN KEY (sku) REFERENCES products(sku) ON DELETE CASCADE
       )
     `;
