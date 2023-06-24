@@ -26,6 +26,11 @@ const productRoutes = [
         path: '/products/{id}',
         handler: productHandler.deleteProduct,
     },
+    {
+        method: 'GET',
+        path: '/products/insert',
+        handler: productHandler.insertBulkProduct,
+    },
 ];
 
 module.exports = productRoutes;

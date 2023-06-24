@@ -1,4 +1,5 @@
 const productModel = require('../models/product_model');
+const {fetchProducts} = require("../utils/fetch");
 
 
 const getProducts = async (request, h) => {
@@ -69,10 +70,20 @@ const deleteProduct = async (request, h) => {
     }
 };
 
+const insertBulkProduct = async (request, h) => {
+    try {
+        await fetchProducts();
+        return h.response("Successfully insert products").code(200);
+    } catch (error) {
+        return h.response('Internal Server Error').code(500);
+    }
+};
+
 module.exports = {
     getProducts,
     getProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    insertBulkProduct
 };

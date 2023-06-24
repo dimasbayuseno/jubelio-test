@@ -55,10 +55,26 @@ const deleteProduct = async (id) => {
     await client.query(query, values);
 };
 
+const insertBulkProducts = async (products) => {
+    try {
+        const query = 'INSERT INTO products (sku, name, image, price, description) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (sku) DO NOTHING';
+
+        for (const product of products) {
+            const values = [product.sku, product.name, product.image, product.price, product.description];
+            await client.query(query, values);
+        }
+
+        console.log('Products inserted into the database.');
+    } catch (error) {
+        console.error('Error inserting products:', error);
+    }
+};
+
 module.exports = {
     getProducts,
     getProductById,
     createProduct,
     updateProduct,
     deleteProduct,
+    insertBulkProducts
 };

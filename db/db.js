@@ -24,7 +24,7 @@ const createTableProduct = async () => {
       CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255),
-        sku VARCHAR(50),
+        sku VARCHAR(50) UNIQUE,
         image VARCHAR(255),
         price DECIMAL,
         description TEXT
@@ -44,9 +44,10 @@ const createTableAdjustmentTransaction = async () => {
         const createTableQuery = `
       CREATE TABLE IF NOT EXISTS adjustment_transactions (
         id SERIAL PRIMARY KEY,
-        sku VARCHAR(50),
+        sku VARCHAR(50) NOT NULL,
         qty INTEGER,
-        amount DECIMAL
+        amount DECIMAL,
+        FOREIGN KEY (sku) REFERENCES products(sku) ON DELETE CASCADE
       )
     `;
 
