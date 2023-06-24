@@ -1,22 +1,27 @@
 const Hapi = require('hapi');
+const {connectToDatabase, createTableAdjustmentTransaction, createTableProduct} = require("./db/db");
 
-const server = Hapi.server({ port: 3000 });
+const init = async () => {
+    await connectToDatabase();
+    await createTableProduct();
+    await createTableAdjustmentTransaction();
 
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
-        return 'Hello, World!';
-    },
-});
+    const server = Hapi.server({
+        port: 3000,
+        host: 'localhost',
+    });
 
-const startServer = async () => {
-    try {
-        await server.start();
-        console.log(`Server running at: ${server.info.uri}`);
-    } catch (error) {
-        console.error('Error starting server:', error);
-    }
-};
 
-startServer();
+
+    server.route({
+        method: 'GET',
+        path: '/',
+        handler: (request, h) => {
+            return 'Hello, World!';
+        },
+    });
+
+    await server.start();
+    console.log('Server running on %s', server.info.uri);
+}
+    init();
