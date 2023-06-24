@@ -2,12 +2,16 @@ const productModel = require('../models/product_model');
 
 
 const getProducts = async (request, h) => {
+    const { page, limit } = request.query;
+
+    const pages = page || 1
+    const limits = limit || 10
+
     try {
-        const products = await productModel.getProducts();
-        return products;
+        const products = await productModel.getProducts(pages, limits);
+        return h.response(products).code(200);
     } catch (error) {
-        console.error('Error retrieving products', error);
-        return h.response('Internal Server Error').code(500);
+        return h.response('Error retrieving products').code(500);
     }
 };
 

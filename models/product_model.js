@@ -1,9 +1,16 @@
 const { client } = require('../db/db');
 
-const getProducts = async () => {
-    const query = 'SELECT * FROM products';
-    const { rows } = await client.query(query);
-    return rows;
+const getProducts = async (page, limit) => {
+    const offset = (page - 1) * limit;
+    const query = `SELECT * FROM products LIMIT $1 OFFSET $2`;
+    const values = [limit, offset];
+
+    try {
+        const { rows } = await client.query(query, values);
+        return rows;
+    } catch (error) {
+        throw new Error('Error retrieving products');
+    }
 };
 
 const getProductById = async (id) => {
