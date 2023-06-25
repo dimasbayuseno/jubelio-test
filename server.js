@@ -2,7 +2,6 @@ const Hapi = require('hapi');
 const {connectToDatabase, createTableAdjustmentTransaction, createTableProduct} = require("./db/db");
 const productRoutes = require("./routes/product_route");
 const adjustmentTransactionRoutes = require("./routes/adjustment_transaction_route");
-const {api, fetchProducts} = require("./utils/fetch");
 
 const init = async () => {
     await connectToDatabase();
@@ -10,7 +9,7 @@ const init = async () => {
     await createTableAdjustmentTransaction();
 
     const server = Hapi.server({
-        port: 3000,
+        port: process.env.PORT,
         host: 'localhost',
     });
 

@@ -19,7 +19,6 @@ const fetchProducts = async (page = 1, limit = 10) => {
         }
 
         const products = await response.json();
-        console.log(products)
         const simplifiedProducts = products.map((product) => ({
             sku: product.sku,
             name: product.name,
@@ -27,7 +26,6 @@ const fetchProducts = async (page = 1, limit = 10) => {
             price: product.price,
             description: product.description,
         }));
-        console.log(simplifiedProducts)
         await productModel.insertBulkProducts(simplifiedProducts);
         console.log('Products inserted successfully.');
     } catch (error) {

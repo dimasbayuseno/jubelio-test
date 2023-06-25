@@ -27,7 +27,9 @@ const createTableProduct = async () => {
         sku VARCHAR(50) UNIQUE,
         image VARCHAR(255),
         price DECIMAL,
-        description TEXT
+        description TEXT,
+        created_at TIMESTAMPTZ DEFAULT NOW(),
+        updated_at TIMESTAMPTZ
       )
     `;
 
@@ -46,7 +48,8 @@ const createTableAdjustmentTransaction = async () => {
         id SERIAL PRIMARY KEY,
         sku VARCHAR(50) NOT NULL,
         qty NUMERIC NOT NULL,
-        FOREIGN KEY (sku) REFERENCES products(sku) ON DELETE CASCADE
+        created_at TIMESTAMPTZ DEFAULT NOW(),
+        updated_at TIMESTAMPTZ
       )
     `;
 

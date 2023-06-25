@@ -1,4 +1,5 @@
 const adjustmentTransactionHandler = require('../handlers/adjustment_transaction_handler');
+const productHandler = require("../handlers/product_handler");
 
 const adjustmentTransactionRoutes = [
     {
@@ -20,6 +21,11 @@ const adjustmentTransactionRoutes = [
         method: 'DELETE',
         path: '/transactions/{id}',
         handler: adjustmentTransactionHandler.deleteTransaction,
+    },
+    {
+        method: 'PUT',
+        path: '/transactions/{id}',
+        handler: adjustmentTransactionHandler.updateAdjustmentTransactions,
     },
 ];
 
