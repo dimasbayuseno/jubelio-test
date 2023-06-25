@@ -12,6 +12,21 @@ const validateCreateTransaction = (payload) => {
     return null;
 }
 
+const validateCreateProduct = (payload) => {
+    const {name, sku, image, price, description} = payload;
+
+    if (!name || !sku || !image || !price || !description) {
+        return 'Missing required fields';
+    }
+
+    if (typeof name !== 'string' || typeof sku !== 'string' || typeof image !== 'string' || typeof price !== 'number' || typeof description !== 'string') {
+        return 'Invalid field types';
+    }
+
+    return null;
+}
+
 module.exports = {
-    validateCreateTransaction
+    validateCreateTransaction,
+    validateCreateProduct
 };
