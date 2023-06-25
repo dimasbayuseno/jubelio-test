@@ -6,7 +6,7 @@ const client = new Client({
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD,
-    port: 5432,
+    port: process.env.DB_PORT,
 });
 
 const connectToDatabase = async () => {
@@ -60,17 +60,6 @@ const createTableAdjustmentTransaction = async () => {
         console.error('Error creating Adjustment Transaction table:', error);
     }
 };
-
-process.on('SIGINT', async () => {
-    try {
-        await client.end();
-        console.log('PostgreSQL client disconnected');
-        process.exit(0);
-    } catch (error) {
-        console.error('Error disconnecting PostgreSQL client', error);
-        process.exit(1);
-    }
-});
 
 module.exports = {
     client,
