@@ -9,14 +9,10 @@
   "author": "dimas",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
-    "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "cross-fetch": "^3.1.6",
     "dotenv": "^16.3.1",
     "hapi": "^18.1.0",
     "hapi-qs": "^2.0.1",
-    "node-fetch": "^3.3.1",
-    "pg": "^8.11.0",
-    "woocommerce-api": "^1.5.0"
+    "pg": "^8.11.0"
   }
 }
