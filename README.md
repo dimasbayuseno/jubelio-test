@@ -6,3 +6,7 @@
 2. npm i
 3. create .env and fill it as env.example
 4. node server.js
+
+#### POSTMAN COLLECTION
+There's a postman collection you can export in postman_collection directory
+Thank-you!
