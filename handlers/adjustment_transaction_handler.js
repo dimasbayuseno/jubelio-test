@@ -98,7 +98,7 @@ const deleteTransaction = async (request, h) => {
             success: true,
             message: 'Transaction successfully deleted',
             transactionId: id,
-        }).code(204);
+        }).code(200);
     } catch (error) {
         return h.response({
             message: 'Error deleting transaction',

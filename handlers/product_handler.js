@@ -139,8 +139,6 @@ const insertBulkProduct = async (request, h) => {
         return h.response({
             success: true,
             message: 'Products successfully inserted',
-            count: products.length,
-            data: products,
         }).code(200);
     } catch (error) {
         return h.response({
